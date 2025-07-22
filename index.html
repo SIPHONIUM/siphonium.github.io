@@ -1,1 +1,49 @@
-Something wrong...
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIPHONIUM - Commence ton aventure</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>SIPHONIUM</h1>
+    <p>Le monde où ton aventure commence.</p>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="shop.html">Shop</a>
+      <a href="#download">Launcher</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="intro">
+      <h2>Bienvenue sur Siphonium</h2>
+      <p>Un monde unique, des aventures sans fin, et une communauté soudée.<br>
+      Rejoins-nous dès aujourd'hui via <span class="highlight">ROCKNITE NEXUS</span> !</p>
+      <div class="ip-box">
+        <span class="label">Adresse Proxy :</span>
+        <span class="ip">nexus.rocknite.fr:26105</span>
+        <button onclick="copyIP()">Copier</button>
+      </div>
+    </section>
+
+    <section class="download" id="download">
+      <h2>Télécharger le Launcher</h2>
+      <a href="https://exemple.com/launcher-siphonium.zip" class="btn">Télécharger</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SIPHONIUM - Un projet ROCKNITE</p>
+  </footer>
+
+  <script>
+    function copyIP() {
+      navigator.clipboard.writeText("nexus.rocknite.fr:26105");
+      alert("Adresse proxy copiée !");
+    }
+  </script>
+</body>
+</html>
