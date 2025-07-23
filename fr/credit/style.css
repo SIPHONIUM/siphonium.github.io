@@ -6,6 +6,21 @@ body {
     text-align: center;
 }
 
+.windows{
+    width: 10vh;
+    height: 10vw
+}
+
+.linux{
+    width: 10vh;
+    height: 10vw
+}
+
+.macos{
+    width: 10vh;
+    height: 10vw
+}
+
 h1 {
     color: #333;
     margin-bottom: 30px;
