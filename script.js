@@ -1,5 +1,5 @@
 (function () {
-  const baseURL = "https://siphonium.github.io//";
+  const baseURL = "https://siphonium.github.io/";
 
   const supportedLangs = ["fr", "en", "es", "de", "it", "jp", "pt", "ar", "ru", "zh"];
   
