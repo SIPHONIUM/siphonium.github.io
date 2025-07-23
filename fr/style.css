@@ -12,7 +12,7 @@ body {
 }
 
 header {
-  background-image: url('https://github.com/SIPHONIUM/siphonium.github.io/blob/8c9e0af72a173e64fc60a127ec3bcd5cad8d347e/assets/img/banniere.jpeg');
+  background-image: url('../assets/img/banniere.jpeg');
   text-align: center;
   padding: 40px 20px;
   box-shadow: 0 4px 8px #000;
