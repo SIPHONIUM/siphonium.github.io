@@ -12,9 +12,9 @@ body {
 }
 
 header {
+  background-image: url('../assets/img/banniere.jpg');
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(90deg, #320058, #000);
   box-shadow: 0 4px 8px #000;
 }
 
