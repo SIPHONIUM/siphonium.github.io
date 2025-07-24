@@ -1,21 +1,27 @@
 name: Deploy to GitHub Pages
 
+# Déclenchement sur push vers main
 on:
   push:
     branches:
       - main
 
+# Permissions requises
+permissions:
+  id-token: write               # pour configure-pages
+  pages: write                  # pour deploy-pages
+  contents: read                # pour checkout
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      contents: read
 
     steps:
+      # 1. Récupère le code
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 2. Génère sitemap.xml et .nojekyll
       - name: Generate sitemap.xml
         run: |
           cat > sitemap.xml << 'EOF'
@@ -33,14 +39,22 @@ jobs:
               <priority>0.80</priority>
               <changefreq>weekly</changefreq>
             </url>
-            <!-- Ajoute ici les autres URL selon ton besoin -->
+            <!-- Ajoute ici les autres URLs -->
           </urlset>
           EOF
+          # Désactive Jekyll
           touch .nojekyll
 
+      # 3. Configure Pages (ID token)
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v3
+
+      # 4. Prépare l’artifact à déployer
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+      
+      # 5. Déploie vers gh-pages (ou la branche que tu as configurée)
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v1
-        with:
-          branch: gh-pages        # branche cible pour Pages
-          folder: ./              # contenu à déployer
-
