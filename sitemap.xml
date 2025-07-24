@@ -27,6 +27,25 @@
   <lastmod>2025-07-24T11:01:03+00:00</lastmod>
   <priority>0.80</priority>
 </url>
-
+<url>
+  <loc>https://siphonium.github.io/en/</loc>
+  <lastmod>2025-07-24T11:01:03+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://siphonium.github.io/en/shop/</loc>
+  <lastmod>2025-07-24T11:01:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://siphonium.github.io/en/launcher/</loc>
+  <lastmod>2025-07-24T11:01:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://siphonium.github.io/en/credit/</loc>
+  <lastmod>2025-07-24T11:01:03+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
 </urlset>
