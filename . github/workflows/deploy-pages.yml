@@ -1,0 +1,45 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate sitemap.xml
+        run: |
+          cat > sitemap.xml << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url>
+              <loc>https://siphonium.github.io/fr/</loc>
+              <lastmod>$(date +%F)</lastmod>
+              <priority>1.00</priority>
+              <changefreq>daily</changefreq>
+            </url>
+            <url>
+              <loc>https://siphonium.github.io/fr/shop/</loc>
+              <lastmod>$(date +%F)</lastmod>
+              <priority>0.80</priority>
+              <changefreq>weekly</changefreq>
+            </url>
+            <!-- Ajoute ici les autres URL selon ton besoin -->
+          </urlset>
+          EOF
+          touch .nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
+        with:
+          branch: gh-pages        # branche cible pour Pages
+          folder: ./              # contenu à déployer
