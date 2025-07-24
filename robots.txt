@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://siphonium.github.io/sitemap.xml
