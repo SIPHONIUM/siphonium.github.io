@@ -14,7 +14,6 @@ body {
   flex-direction: column;
 }
 
-/* -------- HEADER -------- */
 header {
   background: url('../assets/img/banniere.jpeg') center/cover no-repeat;
   text-align: center;
@@ -36,7 +35,6 @@ header p {
   margin-top: 10px;
 }
 
-/* -------- NAV -------- */
 nav {
   position: absolute;
   top: 0;
@@ -48,6 +46,7 @@ nav {
   border-bottom-right-radius: 20px;
   box-shadow: 0 0 15px #000;
   z-index: 100;
+  align-items: center;
 }
 
 nav a {
@@ -63,7 +62,6 @@ nav a.active {
   color: #ff4ecf;
 }
 
-/* -------- MAIN -------- */
 main {
   flex: 1;
   padding: 40px 20px;
@@ -80,7 +78,6 @@ main {
   text-align: center;
 }
 
-/* -------- DOWNLOAD SECTION -------- */
 .download-list {
   display: flex;
   justify-content: center;
@@ -107,7 +104,6 @@ main {
   background: #ff4ecf;
 }
 
-/* -------- ICONES OS -------- */
 .windows,
 .linux,
 .macos {
@@ -115,7 +111,6 @@ main {
   height: 28px;
 }
 
-/* -------- IP BOX -------- */
 .ip-box {
   margin-top: 20px;
   padding: 15px;
@@ -156,7 +151,6 @@ button:hover {
   background: #ff4ecf;
 }
 
-/* -------- CARDS -------- */
 .card {
   background: #fff;
   border-radius: 20px;
@@ -183,7 +177,6 @@ button:hover {
   color: #333;
 }
 
-/* -------- ÉQUIPE -------- */
 .team-container {
   display: flex;
   justify-content: center;
@@ -193,7 +186,6 @@ button:hover {
   padding: 40px 0;
 }
 
-/* -------- FOOTER -------- */
 footer {
   text-align: center;
   padding: 25px 10px;
