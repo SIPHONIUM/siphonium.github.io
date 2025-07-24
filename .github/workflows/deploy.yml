@@ -3,7 +3,7 @@ name: 🚀 Deploy Siphonium Website
 on:
   push:
     branches:
-      - main  # ou master selon ton repo
+      - main
 
 permissions:
   contents: read
@@ -18,20 +18,19 @@ jobs:
       - name: 📥 Checkout
         uses: actions/checkout@v4
 
-      - name: 🧱 Setup Ruby
-        uses: ruby/setup-ruby@1.178.0
+      - name: 🧱 Setup Ruby (stable v1)
+        uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
           bundler-cache: true
 
-      - name: 🛠️ Install dependencies
+      - name: 💎 Init Gemfile + install
         run: |
-          gem install bundler
           bundle init || true
           echo 'gem "jekyll"' >> Gemfile
           bundle install
 
-      - name: ⚙️ Build site with Jekyll
+      - name: ⚙️ Build Jekyll site
         run: bundle exec jekyll build
 
       - name: 📦 Upload to GitHub Pages
