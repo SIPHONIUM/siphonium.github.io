@@ -1,41 +1,40 @@
-name: Generate sitemap.xml in main branch
+name: Generate and deploy sitemap.xml on GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
-  contents: write  # Important pour push sur main !
+  contents: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout main branch
-      uses: actions/checkout@v3
-      with:
-        persist-credentials: true
-        fetch-depth: 0  # nécessaire pour push
+      - name: Checkout main branch
+        uses: actions/checkout@v3
 
-    - name: Generate sitemap.xml
-      run: |
-        echo '<?xml version="1.0" encoding="UTF-8"?>' > sitemap.xml
-        echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> sitemap.xml
+      - name: Generate sitemap.xml
+        run: |
+          mkdir -p _site
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > _site/sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> _site/sitemap.xml
 
-        echo '<url><loc>https://siphonium.github.io/</loc><lastmod>2025-07-24</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>' >> sitemap.xml
-        echo '<url><loc>https://siphonium.github.io/fr/</loc><changefreq>weekly</changefreq></url>' >> sitemap.xml
-        echo '<url><loc>https://siphonium.github.io/fr/shop</loc><lastmod>2025-07-24</lastmod><changefreq>weekly</changefreq></url>' >> sitemap.xml
-        echo '<url><loc>https://siphonium.github.io/fr/launcher</loc><lastmod>2025-07-24</lastmod><priority>0.5</priority></url>' >> sitemap.xml
-        echo '<url><loc>https://siphonium.github.io/fr/credit</loc><lastmod>2025-07-24</lastmod></url>' >> sitemap.xml
+          echo '<url><loc>https://siphonium.github.io/</loc><lastmod>2025-07-24</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>' >> _site/sitemap.xml
+          echo '<url><loc>https://siphonium.github.io/fr/</loc><changefreq>weekly</changefreq></url>' >> _site/sitemap.xml
+          echo '<url><loc>https://siphonium.github.io/fr/shop</loc><lastmod>2025-07-24</lastmod><changefreq>weekly</changefreq></url>' >> _site/sitemap.xml
+          echo '<url><loc>https://siphonium.github.io/fr/launcher</loc><lastmod>2025-07-24</lastmod><priority>0.5</priority></url>' >> _site/sitemap.xml
+          echo '<url><loc>https://siphonium.github.io/fr/credit</loc><lastmod>2025-07-24</lastmod></url>' >> _site/sitemap.xml
 
-        echo '</urlset>' >> sitemap.xml
+          echo '</urlset>' >> _site/sitemap.xml
 
-    - name: Commit and push sitemap.xml
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Optionnel : vérifie le contenu dans les logs
+          cat _site/sitemap.xml
 
-        git add sitemap.xml
-        git commit -m "🗺️ Auto-génération du sitemap.xml" || echo "Rien à commit"
-        git push origin main
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
