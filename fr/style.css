@@ -11,6 +11,30 @@ body {
   line-height: 1.6;
 }
 
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.card h2 {
+    margin: 15px 0 0 0;
+    font-size: 20px;
+    color: #444;
+}
 header {
   background-image: url('../assets/img/banniere.jpeg');
   text-align: center;
