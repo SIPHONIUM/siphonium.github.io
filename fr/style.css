@@ -153,22 +153,22 @@ footer {
   font-size: 0.9em;
   color: #777;
   border-top: 1px solid #333;
-  margin-top: 60px;
+  margin-top: 90vh;
 }
 
 .windows{
     width: 10vh;
-    height: 10vw
+    height: 7vw
 }
 
 .linux{
     width: 10vh;
-    height: 10vw
+    height: 7vw
 }
 
 .macos{
     width: 10vh;
-    height: 10vw
+    height: 7vw
 }
 
 .team-container {
