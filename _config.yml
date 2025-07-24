@@ -1,8 +1,0 @@
-# Pour que GitHub Pages serve les fichiers XML comme il faut
-defaults:
-  -
-    scope:
-      path: ""
-      type: "files"
-    values:
-      content_type: "application/xml"
