@@ -1,27 +1,25 @@
 name: Deploy to GitHub Pages
 
-# Déclenchement sur push vers main
 on:
   push:
     branches:
       - main
 
-# Permissions requises
 permissions:
-  id-token: write               # pour configure-pages
-  pages: write                  # pour deploy-pages
-  contents: read                # pour checkout
+  id-token: write        # Nécessaire pour configure-pages
+  pages: write           # Pour déployer sur Pages
+  contents: read         # Pour checkout
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Récupère le code
+      # 1. Récupère ton code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Génère sitemap.xml et .nojekyll
+      # 2. Génère ton sitemap + désactive Jekyll
       - name: Generate sitemap.xml
         run: |
           cat > sitemap.xml << 'EOF'
@@ -39,22 +37,21 @@ jobs:
               <priority>0.80</priority>
               <changefreq>weekly</changefreq>
             </url>
-            <!-- Ajoute ici les autres URLs -->
+            <!-- Ajoute ici tes autres URLs -->
           </urlset>
           EOF
-          # Désactive Jekyll
           touch .nojekyll
 
-      # 3. Configure Pages (ID token)
+      # 3. Prépare l’ID token pour Pages
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v3
 
-      # 4. Prépare l’artifact à déployer
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v1
+      # 4. Emballe tout dans l’artifact "github-pages"
+      - name: Upload static files
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: .
-      
-      # 5. Déploie vers gh-pages (ou la branche que tu as configurée)
+          path: .   # déploie tout ce qui est à la racine
+
+      # 5. Déploie l’artifact sur GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
