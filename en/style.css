@@ -1,0 +1,182 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: radial-gradient(#7F00FF, #000);
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    padding: 20px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.card h2 {
+    margin: 15px 0 0 0;
+    font-size: 20px;
+    color: #444;
+}
+header {
+  background-image: url('../assets/img/banniere.jpeg');
+  text-align: center;
+  padding: 40px 20px;
+  box-shadow: 0 4px 8px #000;
+}
+
+header h1 {
+  font-size: 3em;
+  color: #b976ff;
+  letter-spacing: 2px;
+}
+
+header p {
+  font-size: 1.2em;
+  color: #ccc;
+  margin-top: 10px;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 15px 20px;
+  display: flex;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom-right-radius: 15px;
+  box-shadow: 0 0 10px #000;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+  font-size: 1em;
+}
+
+nav a:hover,
+nav a.active {
+  color: #b976ff;
+}
+
+main {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.intro h2, .download h2, .shop-dev h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #b976ff;
+}
+
+.highlight {
+  color: #ff4ecf;
+  font-weight: bold;
+}
+
+.ip-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: #1a1a1a;
+  border: 1px solid #444;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.ip {
+  font-family: monospace;
+  background: #111;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.label {
+  font-weight: bold;
+  color: #ccc;
+}
+
+button {
+  background: #b976ff;
+  color: black;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff4ecf;
+}
+
+.btn {
+  display: inline-block;
+  background: #b976ff;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #ff4ecf;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 10px;
+  font-size: 0.9em;
+  color: #777;
+  border-top: 1px solid #333;
+  margin-top: 90vh;
+}
+
+.windows{
+    width: 10vh;
+    height: 7vw
+}
+
+.linux{
+    width: 10vh;
+    height: 7vw
+}
+
+.macos{
+    width: 10vh;
+    height: 7vw
+}
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  gap: 20px;  
+  flex-wrap: wrap;          
+  padding: 40px;
+}
+
