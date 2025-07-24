@@ -15,7 +15,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Create sitemap.xml dynamically
+    - name: Generate sitemap.xml and .htaccess
       run: |
         mkdir -p _site
 
@@ -30,8 +30,12 @@ jobs:
 
         echo '</urlset>' >> _site/sitemap.xml
 
-    - name: Fix MIME type with .htaccess
-      run: echo 'AddType application/xml .xml' > _site/.htaccess
+        # Add correct MIME type
+        echo 'AddType application/xml .xml' > _site/.htaccess
+
+        echo "---- sitemap.xml ----"
+        cat _site/sitemap.xml
+        echo "----------------------"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
