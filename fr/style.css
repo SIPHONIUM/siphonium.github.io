@@ -170,3 +170,13 @@ footer {
     width: 10vh;
     height: 10vw
 }
+
+.team-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  gap: 20px;  
+  flex-wrap: wrap;          
+  padding: 40px;
+}
+
