@@ -1,0 +1,53 @@
+name: 🚀 Deploy Siphonium Website
+
+on:
+  push:
+    branches:
+      - main  # ou master selon ton repo
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🧱 Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler-cache: true
+
+      - name: 🛠️ Install dependencies
+        run: |
+          gem install bundler
+          bundle init || true
+          echo 'gem "jekyll"' >> Gemfile
+          bundle install
+
+      - name: ⚙️ Build site with Jekyll
+        run: bundle exec jekyll build
+
+      - name: 📦 Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 🚀 Deploy
+        id: deployment
+        uses: actions/deploy-pages@v2
