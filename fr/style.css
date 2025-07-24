@@ -38,7 +38,8 @@ header p {
 nav {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 15px 25px;
   display: flex;
   gap: 25px;
@@ -48,6 +49,7 @@ nav {
   z-index: 100;
   align-items: center;
 }
+
 
 nav a {
   color: white;
