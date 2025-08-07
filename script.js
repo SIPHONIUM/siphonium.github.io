@@ -8,12 +8,28 @@
     });
   }
 
-  let userLang = (navigator.language || navigator.userLanguage || "en").toLowerCase();
-  let langCode = userLang.split("-")[0];
-  let redirectLang = supportedLangs.includes(langCode) ? langCode : "en";
+  const urlPath = window.location.pathname;
+  const currentLang = urlPath.split("/")[1];
 
-  const preloadURL = `${baseURL}${redirectLang}/`;
-  fetch(preloadURL, { cache: "reload" }).finally(() => {
-    window.location.replace(preloadURL);
-  });
+  if (!supportedLangs.includes(currentLang)) {
+    let savedLang = localStorage.getItem("preferredLang");
+    let userLang = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+    let langCode = savedLang || userLang.split("-")[0];
+    let redirectLang = supportedLangs.includes(langCode) ? langCode : "en";
+    const preloadURL = `${baseURL}${redirectLang}/`;
+
+    fetch(preloadURL, { cache: "reload" }).finally(() => {
+      window.location.replace(preloadURL);
+    });
+  }
+
+  window.changeLang = function (lang) {
+    if (!supportedLangs.includes(lang)) lang = "en";
+    localStorage.setItem("preferredLang", lang);
+    const targetURL = `${baseURL}${lang}/`;
+
+    fetch(targetURL, { cache: "reload" }).finally(() => {
+      window.location.replace(targetURL);
+    });
+  };
 })();
