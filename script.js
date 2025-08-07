@@ -32,4 +32,10 @@
       window.location.replace(targetURL);
     });
   };
+
+  window.copyIP = function() {
+    navigator.clipboard.writeText("nexus.rocknite.fr:26105")
+      .then(() => alert("Adresse proxy copiée !"))
+      .catch(() => alert("Échec de la copie dans le presse-papier"));
+  };
 })();
