@@ -1,1 +1,131 @@
-Je bosse dessus. Touche pas stp.
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Update Linux - Siphonium Launcher</title>
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #1e1e2f; color: #f0f0f0; padding: 20px; line-height: 1.6; }
+    h1 { color: #ff6f61; }
+    a.button { display: inline-block; margin: 10px 0; padding: 10px 15px; background: #ff6f61; color: white; text-decoration: none; border-radius: 5px; }
+    a.button:hover { background: #ff4c3b; }
+    code { background: #2e2e3f; padding: 2px 6px; border-radius: 4px; }
+    pre { background: #2e2e3f; padding: 10px; border-radius: 6px; overflow-x: auto; }
+    .container { max-width: 800px; margin: auto; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 id="title">Mise à jour Linux - Siphonium Launcher</h1>
+    <ol id="instructions"></ol>
+</div>
+
+<script>
+const translations = {
+    fr: {
+        steps: [
+            'Télécharger la nouvelle version du launcher depuis <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">ICI</a>.',
+            'Remplacer le contenu de votre dossier de launcher actuel par celui du .zip que vous venez de télécharger.',
+            'Ouvrir un terminal et rendre le launcher exécutable : <pre>chmod +x SiphoniumLauncher</pre>',
+            'Profiter !'
+        ],
+        title: "Mise à jour Linux - Siphonium Launcher"
+    },
+    en: {
+        steps: [
+            'Download the new version of the launcher from <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">HERE</a>.',
+            'Replace the content of your current launcher folder with the .zip you just downloaded.',
+            'Open a terminal and make the launcher executable: <pre>chmod +x SiphoniumLauncher</pre>',
+            'Enjoy!'
+        ],
+        title: "Linux Update - Siphonium Launcher"
+    },
+    es: {
+        steps: [
+            'Descargue la nueva versión del lanzador desde <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">AQUÍ</a>.',
+            'Reemplace el contenido de su carpeta actual del lanzador con el .zip que acaba de descargar.',
+            'Abra una terminal y haga ejecutable el lanzador: <pre>chmod +x SiphoniumLauncher</pre>',
+            '¡Disfruta!'
+        ],
+        title: "Actualización Linux - Siphonium Launcher"
+    },
+    de: {
+        steps: [
+            'Laden Sie die neue Version des Launchers von <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">HIER</a> herunter.',
+            'Ersetzen Sie den Inhalt Ihres aktuellen Launcher-Ordners durch die heruntergeladene .zip-Datei.',
+            'Öffnen Sie ein Terminal und machen Sie den Launcher ausführbar: <pre>chmod +x SiphoniumLauncher</pre>',
+            'Viel Spaß!'
+        ],
+        title: "Linux-Update - Siphonium Launcher"
+    },
+    it: {
+        steps: [
+            'Scarica la nuova versione del launcher da <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">QUI</a>.',
+            'Sostituisci il contenuto della cartella del launcher attuale con il .zip appena scaricato.',
+            'Apri un terminale e rendi eseguibile il launcher: <pre>chmod +x SiphoniumLauncher</pre>',
+            'Divertiti!'
+        ],
+        title: "Aggiornamento Linux - Siphonium Launcher"
+    },
+    jp: {
+        steps: [
+            'ランチャーの新しいバージョンを<a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">ここ</a>からダウンロードしてください。',
+            'ダウンロードした.zipの内容で現在のランチャーフォルダを置き換えてください。',
+            'ターミナルを開き、ランチャーを実行可能にします：<pre>chmod +x SiphoniumLauncher</pre>',
+            '楽しんでください！'
+        ],
+        title: "Linux アップデート - Siphonium Launcher"
+    },
+    pt: {
+        steps: [
+            'Baixe a nova versão do launcher <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">AQUI</a>.',
+            'Substitua o conteúdo da sua pasta atual do launcher pelo .zip que você acabou de baixar.',
+            'Abra um terminal e torne o launcher executável: <pre>chmod +x SiphoniumLauncher</pre>',
+            'Aproveite!'
+        ],
+        title: "Atualização Linux - Siphonium Launcher"
+    },
+    ar: {
+        steps: [
+            'قم بتنزيل الإصدار الجديد من المشغل من <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">هنا</a>.',
+            'استبدل محتوى مجلد المشغل الحالي بالملف .zip الذي قمت بتنزيله.',
+            'افتح الطرفية واجعل المشغل قابل للتنفيذ: <pre>chmod +x SiphoniumLauncher</pre>',
+            'استمتع!'
+        ],
+        title: "تحديث Linux - Siphonium Launcher"
+    },
+    ru: {
+        steps: [
+            'Скачайте новую версию лаунчера <a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">ЗДЕСЬ</a>.',
+            'Замените содержимое текущей папки лаунчера на скачанный .zip файл.',
+            'Откройте терминал и сделайте лаунчер исполняемым: <pre>chmod +x SiphoniumLauncher</pre>',
+            'Приятного пользования!'
+        ],
+        title: "Обновление Linux - Siphonium Launcher"
+    },
+    zh: {
+        steps: [
+            '从<a class="button" href="https://siphonium.alwaysdata.net/launcher/download/siphonium%20Launcher-linux.zip" target="_blank">这里</a>下载新的启动器版本。',
+            '用你刚下载的.zip文件替换当前启动器文件夹的内容。',
+            '打开终端并使启动器可执行：<pre>chmod +x SiphoniumLauncher</pre>',
+            '享受吧！'
+        ],
+        title: "Linux 更新 - Siphonium Launcher"
+    }
+};
+
+// Détecte la langue du navigateur
+let lang = navigator.language.slice(0,2);
+if (!translations[lang]) lang = 'en'; // fallback si non supportée
+
+document.getElementById("title").innerHTML = translations[lang].title;
+
+const instructionsEl = document.getElementById("instructions");
+translations[lang].steps.forEach(step => {
+    const li = document.createElement("li");
+    li.innerHTML = step;
+    instructionsEl.appendChild(li);
+});
+</script>
+</body>
+</html>
