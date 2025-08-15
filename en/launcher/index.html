@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Download of the Launcher - SIPHONIUM</title>
+  <title>Launcher Download - SIPHONIUM</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <header>
     <h1>SIPHONIUM</h1>
     <nav>
-      <a href="">Home</a>
-      <a href="shop/">Shop</a>
-      <a href="launcher/">Launcher</a>
-      <a href="credit/">Credit</a>
+      <a href="../">Home</a>
+      <a href="../shop/">Shop</a>
+      <a href="" class="active">Launcher</a>
+      <a href="../credit/">Credits</a>
     </nav>
   </header>
 
   <main>
     <section class="intro">
       <h2>Download the Launcher</h2>
-      <p>Choose your platform to begin your adventure on  SIPHONIUM.</p>
+      <p>Choose your platform to start your adventure on SIPHONIUM.</p>
       <div class="download-list">
-        <a class="btn" href="https://siphonium.alwaysdata.net/launcher/download/siphonium Launcher-win-x64.exe" target="_blank">
+        <a class="btn" id="download-windows" href="#" target="_blank">
           <img src="../../assets/img/windows.svg" class='windows'>
           Windows
         </a>
-        <a class="btn" href="https://siphonium.alwaysdata.net/launcher/download/siphonium Launcher-linux.zip" target="_blank">
+        <a class="btn" id="download-linux" href="#" target="_blank">
           <img src="../../assets/img/tux.svg" class='linux'> 
           Linux
         </a>
-        <a class="btn" href="https://siphonium.alwaysdata.net/launcher/download/siphonium Launcher-mac-universal.dmg" target="_blank">
+        <a class="btn" id="download-macos" href="#" target="_blank">
           <img src="../../assets/img/apple.svg" class='macos'>
           macOS
         </a>
@@ -41,5 +41,35 @@
   <footer>
     <p>&copy; 2025 SIPHONIUM - An amazing project</p>
   </footer>
+
+  <script>
+    // URL of tunnels.txt
+    const tunnelsURL = "https://siphonium.github.io/url/tunnels.txt";
+
+    fetch(tunnelsURL)
+      .then(response => response.text())
+      .then(data => {
+        // Find the line containing SIPHONIUM-LAUNCHER-DOWNLOAD
+        const lines = data.split("\n");
+        let downloadBase = "";
+        for (const line of lines) {
+          if (line.startsWith("SIPHONIUM-LAUNCHER-DOWNLOAD")) {
+            // Extract the URL after '=' and trim spaces
+            downloadBase = line.split("=")[1].trim();
+            break;
+          }
+        }
+
+        if (downloadBase) {
+          // Update download links
+          document.getElementById("download-windows").href = downloadBase + "/siphonium Launcher-win-x64.exe";
+          document.getElementById("download-linux").href = downloadBase + "/siphonium Launcher-linux.zip";
+          document.getElementById("download-macos").href = downloadBase + "/siphonium Launcher-mac-universal.dmg";
+        } else {
+          console.error("Unable to retrieve download URL!");
+        }
+      })
+      .catch(err => console.error("Error fetching tunnels.txt file:", err));
+  </script>
 </body>
 </html>
