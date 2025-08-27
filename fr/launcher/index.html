@@ -71,5 +71,18 @@
       })
       .catch(err => console.error("Erreur lors du fetch du fichier tunnels.txt :", err));
   </script>
+  <script>
+    function pingActivity(from) {
+        const url = 'https://siphonium.alwaysdata.net/panel/website/activity.php?from=' + encodeURIComponent(from);
+        fetch(url, { method: 'GET', cache: 'no-store' })
+            .then(res => res.json())
+            .then(data => console.log('Activity pinged:', data))
+            .catch(err => console.error('Activity ping failed:', err));
+    }
+
+    // Ping immédiat
+    pingActivity('launcher');
+    pingActivity('FR');
+  </script>
 </body>
 </html>
