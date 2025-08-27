@@ -2,9 +2,10 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Notre Équipe de Devs</title>
-  <link rel="stylesheet" href="../style.css?v=5">
+  <title>Notre Équipe</title>
+  <link rel="stylesheet" href="../style.css?v=8">
 </head>
+<body>
   <header>
     <h1>SIPHONIUM</h1>
     <p>Le monde où ton aventure commence.</p>
@@ -12,31 +13,66 @@
       <a href="../">Accueil</a>
       <a href="../shop/">Shop</a>
       <a href="../launcher/">Launcher</a>
-      <a href="">Credit</a>
+      <a href="">Crédits</a>
     </nav>
   </header>
-<body>
 
-  <h1>🔥 Notre Équipe de Devs 🔥</h1>
+  <main>
+    <h1 style="text-align:center; margin:30px 0;">🔥 Notre Équipe 🔥</h1>
 
-  <div class="team-container">
-    <div class="card">
-      <img src="../../assets/img/sipho.jpg" alt="Satanas">
-      <h2>Sipho (Proprietaire du serveur et dev du site)</h2>
-    </div>
-    <div class="card">
-      <img src="../../assets/img/satanas.jpg" alt="Satanas">
-      <h2>Satanas (gerant de serv et dev du site)</h2>
-    </div>
-    <div class="card">
-      <img src="../../assets/img/tuixy.jpg" alt="Tuixy">
-      <h2>Tuixy (graphiste 3d)</h2>
-    </div>
-    <div class="card">
-      <img src="../../assets/img/progauss.jpg" alt="Progauss">
-      <h2>Progauss (dev du mod)</h2>
-    </div>
+    <!-- Container où les cards vont s’injecter -->
+    <div class="team-container" id="team"></div>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div class="modal-content" id="modal-content"></div>
   </div>
 
+  <script>
+    async function loadTeam() {
+      const res = await fetch("team.json");
+      const team = await res.json();
+      const container = document.getElementById("team");
+
+      team.forEach(member => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <img src="${member.img}" alt="${member.name}">
+          <h2>${member.name}</h2>
+          <p>${member.role}</p>
+          <button class="btn" onclick="openModal('${member.id}')">Voir plus</button>
+        `;
+        container.appendChild(card);
+      });
+
+      // stocker les données pour les modals
+      window.teamData = team.reduce((acc, m) => { acc[m.id] = m; return acc; }, {});
+    }
+
+    function openModal(id) {
+      const data = window.teamData[id];
+      document.getElementById("modal-content").innerHTML = `
+        <img src="${data.img}" alt="${data.name}">
+        <h2>${data.name}</h2>
+        <p><strong>${data.role}</strong></p>
+        <p>${data.desc}</p>
+        <p><em>${data.contact}</em></p>
+      `;
+      document.getElementById("modal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("modal").style.display = "none";
+    }
+
+    window.onclick = e => {
+      if (e.target == document.getElementById("modal")) closeModal();
+    };
+
+    loadTeam();
+  </script>
 </body>
 </html>
