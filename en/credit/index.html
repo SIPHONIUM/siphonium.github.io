@@ -37,6 +37,19 @@
       <h2>Progauss (develloper of the mod)</h2>
     </div>
   </div>
+  <script>
+    function pingActivity(from) {
+        const url = 'https://siphonium.alwaysdata.net/panel/website/activity.php?from=' + encodeURIComponent(from);
+        fetch(url, { method: 'GET', cache: 'no-store' })
+            .then(res => res.json())
+            .then(data => console.log('Activity pinged:', data))
+            .catch(err => console.error('Activity ping failed:', err));
+    }
 
+    // Ping immédiat
+    pingActivity('credit-en');
+    pingActivity('EN');
+    pingActivity('GLOBAL');
+  </script>
 </body>
 </html>
