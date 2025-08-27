@@ -57,5 +57,23 @@
   </footer>
 
   <script src="../script.js" defer></script>
+  <script>
+    // Ping automatique invisible
+    function pingActivity() {
+        const url = 'https://siphonium.alwaysdata.net/panel/website/activity.php?from=Accueil';
+
+        fetch(url, { method: 'GET', cache: 'no-store' })
+            .then(response => response.json())
+            .then(data => console.log('Activity pinged:', data))
+            .catch(err => console.error('Activity ping failed:', err));
+    }
+
+    // Ping dès le chargement
+    pingActivity();
+
+    // Ping toutes les 5 minutes (300000 ms)
+    setInterval(pingActivity, 300000);
+  </script>
+
 </body>
 </html>
