@@ -1,34 +1,34 @@
 [
-  {
-    "id": "sipho",
-    "name": "Sipho",
-    "role": "Fondateur & Développeur",
-    "img": "../../assets/img/sipho.jpg",
-    "desc": "Créateur de SIPHONIUM et développeur principal du site.",
-    "contact": "Discord: le_modo_de_sipho"
-  },
-  {
-    "id": "satanas",
-    "name": "Satanas",
-    "role": "Gestion & Développement Web",
-    "img": "../../assets/img/satanas.jpg",
-    "desc": "Gère les serveurs et participe au développement du site.",
-    "contact": "Discord: satanas1275"
-  },
-  {
-    "id": "tuixy",
-    "name": "Tuixy",
-    "role": "Graphiste 3D",
-    "img": "../../assets/img/tuixy.jpg",
-    "desc": "Spécialiste en modélisation 3D et design visuel.",
-    "contact": "Discord: tuixyy"
-  },
-  {
-    "id": "progauss",
-    "name": "Progauss",
-    "role": "Développeur Mod",
-    "img": "../../assets/img/progauss.jpg",
-    "desc": "Développe des mods et plugins personnalisés.",
-    "contact": "Discord: progauss"
-  }
+    {
+        "id": "sipho",
+        "name": "Sipho",
+        "role": "Fondateur & D\u00e9veloppeur",
+        "img": "../../assets/img/sipho.jpg",
+        "desc": "Cr\u00e9ateur de SIPHONIUM et d\u00e9veloppeur principal du site.",
+        "contact": "Discord: le_modo_de_sipho"
+    },
+    {
+        "id": "satanas",
+        "name": "Satanas",
+        "role": "Gestion & D\u00e9veloppement Web",
+        "img": "../../assets/img/satanas.jpg",
+        "desc": "G\u00e8re les serveurs et participe au d\u00e9veloppement du site.",
+        "contact": "Discord: satanas1275"
+    },
+    {
+        "id": "tuixy",
+        "name": "Tuixy",
+        "role": "Graphiste",
+        "img": "../../assets/img/tuixy.jpg",
+        "desc": "Sp\u00e9cialiste en mod\u00e9lisation 3D et design visuel.",
+        "contact": "Discord: tuixyy"
+    },
+    {
+        "id": "progauss",
+        "name": "Progauss",
+        "role": "D\u00e9veloppeur Mod",
+        "img": "../../assets/img/progauss.jpg",
+        "desc": "D\u00e9veloppe des mods et plugins personnalis\u00e9s.",
+        "contact": "Discord: progauss"
+    }
 ]
