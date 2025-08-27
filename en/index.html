@@ -56,5 +56,19 @@
   </footer>
 
   <script src="../script.js" defer></script>
+  <script>
+    function pingActivity(from) {
+        const url = 'https://siphonium.alwaysdata.net/panel/website/activity.php?from=' + encodeURIComponent(from);
+        fetch(url, { method: 'GET', cache: 'no-store' })
+            .then(res => res.json())
+            .then(data => console.log('Activity pinged:', data))
+            .catch(err => console.error('Activity ping failed:', err));
+    }
+
+    // Ping immédiat
+    pingActivity('Home');
+    pingActivity('EN');
+    pingActivity('GLOBAL');
+  </script>
 </body>
 </html>
