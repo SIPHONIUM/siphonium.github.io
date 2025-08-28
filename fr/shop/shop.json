@@ -1,32 +1,32 @@
 [
     {
         "title": "Beta Access",
-        "price": "5€",
+        "price": "5\u20ac",
         "featured": true,
         "link": "",
         "image": "https://rocknite-studio.github.io/images/np.png"
     },
     {
         "title": "Premium",
-        "price": "5€",
+        "price": "5\u20ac",
         "link": "",
         "image": "https://rocknite-studio.github.io/images/np.png"
     },
     {
         "title": "VIP",
-        "price": "10€",
+        "price": "10\u20ac",
         "link": "",
         "image": "https://rocknite-studio.github.io/images/np.png"
     },
     {
         "title": "Super VIP",
-        "price": "25€",
+        "price": "25\u20ac",
         "link": "",
         "image": "https://rocknite-studio.github.io/images/np.png"
     },
     {
         "title": "Buisness is Buisness",
-        "price": "100€",
+        "price": "100\u20ac",
         "link": "",
         "image": "https://rocknite-studio.github.io/images/np.png"
     }
