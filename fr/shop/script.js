@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderGames(games) {
-    const featuredGameElement = document.getElementById('featured-game');
-    const gamesListElement = document.getElementById('games-list');
+    const featuredGameElement = document.getElementById('featured-shop');
+    const gamesListElement = document.getElementById('shop-list');
 
     // Afficher le jeu en vedette
     const featuredGame = games.find(game => game.featured);
