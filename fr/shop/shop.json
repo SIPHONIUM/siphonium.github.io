@@ -10,7 +10,8 @@
         "title": "Premium",
         "price": "5\u20ac",
         "link": "",
-        "image": "https://rocknite-studio.github.io/images/np.png"
+        "image": "https://rocknite-studio.github.io/images/np.png",
+        "featured": false
     },
     {
         "title": "VIP",
