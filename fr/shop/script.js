@@ -17,8 +17,7 @@ function renderShop(shops) {
                     <img src="${featuredShop.image}" alt="${featuredShop.title}">
                     <div class="info">
                         <h2>${featuredShop.title}</h2>
-                        <p>by ${featuredShop.creator}</p>
-                        <span>Version: ${featuredShop.version} | ${featuredShop.price}</span>
+                        <span>Prix : ${featuredShop.price}</span>
                     </div>
                 </div>
             </a>
@@ -35,8 +34,6 @@ function renderShop(shops) {
                     <img src="${shop.image}" alt="${shop.title}">
                     <div class="details">
                         <h3>${shop.title}</h3>
-                        <p>by ${shop.creator}</p>
-                        <span>Version: ${shop.version}</span>
                         <p class="price">${shop.price}</p>
                     </div>
                 </a>

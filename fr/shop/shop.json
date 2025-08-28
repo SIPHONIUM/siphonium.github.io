@@ -1,42 +1,32 @@
 [
     {
-        "title": "Minos Escape",
-        "creator": "Sneak0811",
-        "version": "1.0",
-        "price": "free",
-        "link": "https://rocknite-studio.github.io/game/MinosEscape",
-        "image": "https://rocknite-studio.github.io/images/image1.png"
-    },
-    {
-        "title": "ROCKNITE ALPHA",
-        "creator": "Satanas1275",
-        "version": "Alpha 1.3.0",
-        "price": "free",
+        "title": "Beta Access",
+        "price": "5€",
         "featured": true,
-        "link": "https://rocknite-studio.github.io/game/ROCKNITE-ALPHA",
-        "image": "https://rocknite-studio.github.io/images/rocknite/image3.png"
+        "link": "",
+        "image": "https://rocknite-studio.github.io/images/np.png"
     },
     {
-        "title": "ROCKNITE",
-        "creator": "Satanas1275",
-        "version": "Precomande 1.0.0",
+        "title": "Premium",
+        "price": "5€",
+        "link": "https://rocknite-studio.github.io/game/ROCKNITE-ALPHA",
+        "image": "https://rocknite-studio.github.io/images/np.png"
+    },
+    {
+        "title": "VIP",
         "price": "10€",
         "link": "https://rocknite-studio.github.io/game/ROCKNITE",
-        "image": "https://rocknite-studio.github.io/images/rocknite/image3.png"
+        "image": "https://rocknite-studio.github.io/images/np.png"
     },
     {
-        "title": "SkyPlatform",
-        "creator": "Satanas1275",
-        "version": "unpublished",
-        "price": "free",
+        "title": "Super VIP",
+        "price": "25€",
         "link": "https://rocknite-studio.github.io/unavailable",
         "image": "https://rocknite-studio.github.io/images/np.png"
     },
     {
-        "title": "Resonance of Destruction",
-        "creator": "Satanas1275",
-        "version": "unpublished",
-        "price": "free",
+        "title": "Buisness is Buisness",
+        "price": "100€",
         "link": "https://rocknite-studio.github.io/unavailable",
         "image": "https://rocknite-studio.github.io/images/np.png"
     }
