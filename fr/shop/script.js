@@ -1,47 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
     fetch('shop.json')
         .then(response => response.json())
-        .then(data => renderGames(data));
+        .then(data => renderShop(data));
 });
 
-function renderGames(games) {
-    const featuredGameElement = document.getElementById('featured-shop');
-    const gamesListElement = document.getElementById('shop-list');
+function renderShop(shops) {
+    const featuredShopElement = document.getElementById('featured-shop');
+    const shopListElement = document.getElementById('shop-list');
 
-    // Afficher le jeu en vedette
-    const featuredGame = games.find(game => game.featured);
-    if (featuredGame) {
-        featuredGameElement.innerHTML = `
-            <a href="${featuredGame.link}">
+    // Afficher le shop en vedette
+    const featuredShop = shops.find(shop => shop.featured);
+    if (featuredShop) {
+        featuredShopElement.innerHTML = `
+            <a href="${featuredShop.link}">
                 <div class="featured-content">
-                    <img src="${featuredGame.image}" alt="${featuredGame.title}">
+                    <img src="${featuredShop.image}" alt="${featuredShop.title}">
                     <div class="info">
-                        <h2>${featuredGame.title}</h2>
-                        <p>by ${featuredGame.creator}</p>
-                        <span>Version: ${featuredGame.version} | ${featuredGame.price}</span>
+                        <h2>${featuredShop.title}</h2>
+                        <p>by ${featuredShop.creator}</p>
+                        <span>Version: ${featuredShop.version} | ${featuredShop.price}</span>
                     </div>
                 </div>
             </a>
         `;
     }
 
-    // Afficher les autres jeux
-    games.forEach(game => {
-        if (!game.featured) {
-            const gameCard = document.createElement('div');
-            gameCard.classList.add('game-card');
-            gameCard.innerHTML = `
-                <a href="${game.link}">
-                    <img src="${game.image}" alt="${game.title}">
+    // Afficher les autres shops
+    shops.forEach(shop => {
+        if (!shop.featured) {
+            const shopCard = document.createElement('div');
+            shopCard.classList.add('shop-card');
+            shopCard.innerHTML = `
+                <a href="${shop.link}">
+                    <img src="${shop.image}" alt="${shop.title}">
                     <div class="details">
-                        <h3>${game.title}</h3>
-                        <p>by ${game.creator}</p>
-                        <span>Version: ${game.version}</span>
-                        <p class="price">${game.price}</p>
+                        <h3>${shop.title}</h3>
+                        <p>by ${shop.creator}</p>
+                        <span>Version: ${shop.version}</span>
+                        <p class="price">${shop.price}</p>
                     </div>
                 </a>
             `;
-            gamesListElement.appendChild(gameCard);
+            shopListElement.appendChild(shopCard);
         }
     });
 }
