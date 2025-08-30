@@ -22,8 +22,9 @@
     },
     {
         "title": "Super VIP",
-        "price": "25\u20ac",
+        "price": "25 credits",
         "link": "",
-        "image": "https://rocknite-studio.github.io/images/np.png"
+        "image": "https://rocknite-studio.github.io/images/np.png",
+        "featured": false
     }
 ]
