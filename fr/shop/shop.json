@@ -12,7 +12,7 @@
         "price": "100 credits",
         "link": "https://siphonium.github.io/fr/shop/buy/Premium/",
         "image": "https://siphonium.github.io/assets/img/icon.png",
-        "featured": false
+        "featured": false,
         "id": "sjvlj3w4z970s30"
     },
     {
@@ -20,7 +20,7 @@
         "price": "200 credits",
         "link": "https://siphonium.github.io/fr/shop/buy/VIP",
         "image": "https://siphonium.github.io/assets/img/icon.png",
-        "featured": false
+        "featured": false,
         "id": "zsc51f74ysbqbla"
     },
     {
@@ -28,7 +28,7 @@
         "price": "500 credits",
         "link": "https://siphonium.github.io/fr/shop/buy/Super-VIP",
         "image": "https://siphonium.github.io/assets/img/icon.png",
-        "featured": false
+        "featured": false,
         "id": "pihckjato9b0f7y"
     }
 ]
