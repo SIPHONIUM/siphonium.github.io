@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Achat d’un jeu</title>
+  <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      background: #222;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
+      display: inline-block;
+    }
+    button {
+      background: #7F00FF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #9F30FF;
+    }
+    #msg {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<button id="buy-btn">Acheter</button>
+
+<script>
+(async function() {
+  // 1️⃣ Récupérer l'user depuis localStorage
+  const authDataRaw = localStorage.getItem("pocketbase_auth");
+  if (!authDataRaw) {
+    window.location.href = "https://siphonium.github.io/fr/account";
+    return;
+  }
+
+  const authData = JSON.parse(authDataRaw);
+  const userId = authData?.record?.id;
+  if (!userId) {
+    window.location.href = "https://siphonium.github.io/fr/account";
+    return;
+  }
+
+  // 2️⃣ Récupérer tunnel de paiement depuis tunnels.txt
+  const tunnelsURL = "https://siphonium.github.io/url/tunnels.txt";
+  let paymentBase = "";
+  try {
+    const resp = await fetch(tunnelsURL);
+    const text = await resp.text();
+    const lines = text.split("\n");
+    for (const line of lines) {
+      if (line.startsWith("ROCKNITE-STUDIO-CREDITS-PAYEMENT")) {
+        paymentBase = line.split("=")[1].trim();
+        break;
+      }
+    }
+    if (!paymentBase) console.error("Tunnel de paiement introuvable !");
+  } catch (err) {
+    console.error("Erreur fetch tunnels.txt :", err);
+  }
+
+  // 3️⃣ Configurer le bouton acheter
+  const btn = document.getElementById("buy-btn");
+  btn.onclick = async function() {
+    if (!paymentBase) return alert("Tunnel de paiement indisponible");
+
+    // 4️⃣ Appel backend pour créer l'achat
+    try {
+      const gameId = "zsc51f74ysbqbla"; // ID du produit
+      const res = await fetch(paymentBase + `/buy`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, gameId })
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        alert("Achat réussi ! Nouveau solde: " + data.balance);
+      } else {
+        alert("Erreur : " + data.error);
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Impossible de finaliser l'achat");
+    }
+  };
+})();
+</script>
+
+</body>
+</html>
