@@ -2,9 +2,10 @@
     {
         "title": "Beta Access",
         "price": "100 credits",
-        "featured": true,
         "link": "https://siphonium.github.io/fr/shop/buy/Beta-Access",
         "image": "https://siphonium.github.io/assets/img/icon.png"
+        "featured": true,
+        "id": "jvq7k5ldebqki6h"
     },
     {
         "title": "Premium",
@@ -12,6 +13,7 @@
         "link": "https://siphonium.github.io/fr/shop/buy/Premium/",
         "image": "https://siphonium.github.io/assets/img/icon.png",
         "featured": false
+        "id": "sjvlj3w4z970s30"
     },
     {
         "title": "VIP",
@@ -19,6 +21,7 @@
         "link": "https://siphonium.github.io/fr/shop/buy/VIP",
         "image": "https://siphonium.github.io/assets/img/icon.png",
         "featured": false
+        "id": "zsc51f74ysbqbla"
     },
     {
         "title": "Super VIP",
@@ -26,5 +29,6 @@
         "link": "https://siphonium.github.io/fr/shop/buy/Super-VIP",
         "image": "https://siphonium.github.io/assets/img/icon.png",
         "featured": false
+        "id": "pihckjato9b0f7y"
     }
 ]
