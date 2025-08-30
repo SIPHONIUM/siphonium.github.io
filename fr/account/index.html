@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Connexion PocketBase</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/pocketbase/dist/pocketbase.umd.js"></script>
+</head>
+<body>
+<header>
+    <ul>
+        <li><a href="https://rocknite-studio.github.io/">Accueil</a></li>
+        <li><a href="https://rocknite-studio.github.io/jeux">Jeux</a></li>
+        <li><a href="https://rocknite-studio.github.io/news">News</a></li>
+        <li><a href="https://rocknite-studio.github.io/SUPPORT">Assistance</a></li>
+        <li><a href="https://rocknite-studio.github.io/login">Compte</a></li>
+    </ul>
+</header>
+
+<!-- Connexion -->
+<div class="container" id="login-section">
+  <h1>Connexion</h1>
+  <form onsubmit="login(event)">
+    <label for="login-email">Email</label>
+    <input id="login-email" type="email" required />
+    <label for="login-password">Mot de passe</label>
+    <input id="login-password" type="password" required />
+    <button type="submit">Se connecter</button>
+  </form>
+  <p>Pas encore de compte ? <button onclick="showSection('register')">S'inscrire</button></p>
+</div>
+
+<!-- Inscription -->
+<div class="container" id="register-section" style="display: none;">
+  <h1>Inscription</h1>
+  <form onsubmit="register(event)">
+    <label for="register-email">Email</label>
+    <input id="register-email" type="email" required />
+
+    <label for="register-name">Nom</label>
+    <input id="register-name" type="text" required />
+
+    <label for="register-password">Mot de passe</label>
+    <input id="register-password" type="password" required />
+
+    <label for="register-password2">Confirmer le mot de passe</label>
+    <input id="register-password2" type="password" required />
+
+    <button type="submit">Créer un compte</button>
+  </form>
+  <p>Déjà un compte ? <button onclick="showSection('login')">Se connecter</button></p>
+</div>
+
+<!-- Mon Compte -->
+<div class="container" id="account-section" style="display: none;">
+  <h1>Mon compte</h1>
+  <img
+    id="account-avatar"
+    src=""
+    alt="Avatar"
+    style="width: 100px; border-radius: 50%; margin-bottom: 10px; aspect-ratio: 1; object-fit: cover"
+  />
+  <p><strong>Email :</strong> <span id="account-email"></span></p>
+  <p><strong>Nom :</strong> <span id="account-name"></span></p>
+  <p><strong>ID :</strong> <span id="account-id"></span></p>
+  <p><strong>Solde :</strong> <span id="account-balance">...</span> crédits</p>
+
+  <h2>Compte Minecraft</h2>
+  <div id="mc-info">
+    <p><strong>Pseudo :</strong> <span id="mc-username"></span></p>
+    <p><strong>UUID :</strong> <span id="mc-uuid"></span></p>
+    <p><strong>Banni :</strong> <span id="mc-banned"></span></p>
+  </div>
+
+  <!-- Formulaire pour ajouter pseudo MC si pas encore créé -->
+  <div id="mc-create" style="display:none;">
+    <label for="mc-new">Choisir un pseudo Minecraft</label>
+    <input id="mc-new" type="text" required />
+    <button onclick="createMcAccount()">Valider</button>
+  </div>
+
+  <h2>Jeux possédés</h2>
+  <div
+    id="owned-games"
+    style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;"
+  ></div>
+
+  <button id="logout-button" onclick="logout()">Déconnexion</button>
+</div>
+
+<script>
+const pb = new PocketBase("https://rocknite-studio.alwaysdata.net");
+
+function showSection(section) {
+  document.getElementById("login-section").style.display = "none";
+  document.getElementById("register-section").style.display = "none";
+  document.getElementById("account-section").style.display = "none";
+  document.getElementById(section + "-section").style.display = "block";
+  if (section === "account") updateAccountInfo();
+}
+
+async function login(event) {
+  event.preventDefault();
+  const email = document.getElementById("login-email").value;
+  const password = document.getElementById("login-password").value;
+  try {
+    await pb.collection("users").authWithPassword(email, password);
+    showSection("account");
+  } catch (err) {
+    alert("Erreur de connexion : " + err.message);
+  }
+}
+
+// Génération UUID aléatoire
+function generateUUID() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = Math.random() * 16 | 0,
+      v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
+async function register(event) {
+  event.preventDefault();
+  const email = document.getElementById("register-email").value;
+  const name = document.getElementById("register-name").value;
+  const password = document.getElementById("register-password").value;
+  const password2 = document.getElementById("register-password2").value;
+
+  try {
+    // Créer user
+    await pb.collection("users").create({
+      email,
+      name,
+      password,
+      passwordConfirm: password2,
+    });
+
+    // Auto login
+    await pb.collection("users").authWithPassword(email, password);
+
+    alert("Compte créé, connectez-vous !");
+    showSection("account");
+  } catch (err) {
+    alert("Erreur : " + err.message);
+  }
+}
+
+function logout() {
+  pb.authStore.clear();
+  showSection("login");
+}
+
+async function updateAccountInfo() {
+  const user = pb.authStore.model;
+  if (!user) return;
+
+  document.getElementById("account-email").textContent = user.email;
+  document.getElementById("account-name").textContent = user.name;
+  document.getElementById("account-id").textContent = user.id;
+
+  const avatarUrl = user.avatar
+    ? `https://rocknite-studio.alwaysdata.net/api/files/users/${user.id}/${user.avatar}`
+    : "https://via.placeholder.com/100?text=No+Avatar";
+  document.getElementById("account-avatar").src = avatarUrl;
+
+  // Wallet
+  try {
+    const wallets = await pb.collection("wallets").getFullList({
+      filter: `user="${user.id}"`,
+      sort: "-created",
+      limit: 1,
+    });
+    const balance = wallets.length > 0 ? wallets[0].balance : 0;
+    document.getElementById("account-balance").textContent = balance;
+  } catch {
+    document.getElementById("account-balance").textContent = "N/A";
+  }
+
+  // Compte Minecraft
+  try {
+    const mc = await pb.collection("SIPHONIUM_ACCOUNT").getFirstListItem(`user="${user.id}"`);
+    document.getElementById("mc-info").style.display = "block";
+    document.getElementById("mc-create").style.display = "none";
+
+    document.getElementById("mc-username").textContent = mc.username;
+    document.getElementById("mc-uuid").textContent = mc.uuid;
+    document.getElementById("mc-banned").textContent = mc.banned ? "Oui" : "Non";
+  } catch {
+    // Pas encore de compte MC
+    document.getElementById("mc-info").style.display = "none";
+    document.getElementById("mc-create").style.display = "block";
+  }
+
+  // Jeux possédés
+  try {
+    const purchases = await pb.collection("purchases").getFullList({
+      filter: `user="${user.id}" && status="paid"`,
+      expand: "game",
+    });
+
+    const gameContainer = document.getElementById("owned-games");
+    gameContainer.innerHTML = "";
+
+    purchases.forEach((p) => {
+      const game = p.expand.game;
+      if (!game) return;
+
+      const div = document.createElement("div");
+      div.style =
+        "background:#111;padding:10px;border-radius:8px;width:120px;";
+      div.innerHTML = `
+        <img src="${game.image}" style="width:100%;border-radius:5px;" alt="${game.title}">
+        <p style="color:white;font-size:14px;">${game.title}</p>
+      `;
+      gameContainer.appendChild(div);
+    });
+  } catch {}
+}
+
+// Créer un compte Minecraft après connexion
+async function createMcAccount() {
+  const user = pb.authStore.model;
+  if (!user) return;
+
+  const mcPseudo = document.getElementById("mc-new").value;
+  if (!mcPseudo) return alert("Veuillez entrer un pseudo Minecraft");
+
+  try {
+    const uuid = generateUUID();
+    await pb.collection("SIPHONIUM_ACCOUNT").create({
+      user: user.id,
+      username: mcPseudo,
+      uuid: uuid,
+      banned: false
+    });
+
+    alert("Compte Minecraft créé !");
+    updateAccountInfo();
+  } catch (err) {
+    alert("Erreur : " + err.message);
+  }
+}
+
+if (pb.authStore.isValid) showSection("account");
+</script>
+</body>
+</html>
+
