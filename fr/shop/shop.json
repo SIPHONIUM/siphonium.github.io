@@ -30,5 +30,12 @@
         "image": "https://siphonium.github.io/assets/img/icon.png",
         "featured": false,
         "id": "pihckjato9b0f7y"
+    },
+    {
+        "title": "test",
+        "price": "0 credit",
+        "link": "https://siphonium.github.io/fr/shop/buy/Beta-Access",
+        "image": "",
+        "featured": false
     }
 ]
