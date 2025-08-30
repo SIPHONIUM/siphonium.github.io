@@ -454,3 +454,135 @@ footer {
     color: #ff4ecf;
     font-weight: bold;
 }
+
+/* --- Containers Connexion / Inscription / Compte --- */
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+.container h1 {
+  color: #b976ff;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.container label {
+  display: block;
+  text-align: left;
+  color: #ddd;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.container input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #111;
+  color: #fff;
+  font-size: 1em;
+}
+
+.container input:focus {
+  outline: none;
+  border-color: #b976ff;
+  box-shadow: 0 0 8px #b976ff;
+}
+
+.container button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  font-size: 1em;
+  font-weight: bold;
+  background: linear-gradient(135deg, #b976ff, #7f00ff);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.container button:hover {
+  background: linear-gradient(135deg, #ff4ecf, #b976ff);
+  transform: translateY(-2px);
+}
+
+/* --- Pseudo Minecraft --- */
+#mc-create {
+  margin-top: 20px;
+}
+
+#mc-create input {
+  width: calc(100% - 20px);
+  margin-bottom: 10px;
+}
+
+#mc-create button {
+  width: 100%;
+}
+
+/* --- Mon compte --- */
+#account-section p {
+  color: #ccc;
+  margin: 8px 0;
+}
+
+#account-avatar {
+  border: 3px solid #b976ff;
+}
+
+#owned-games div {
+  background: #111;
+  border-radius: 12px;
+  padding: 10px;
+  width: 120px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+#owned-games div:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+
+#owned-games img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+#owned-games p {
+  color: #fff;
+  font-size: 0.85em;
+  margin-top: 5px;
+}
+
+/* --- Message alert / info --- */
+.alert {
+  background: #ff4ecf;
+  color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Responsive mobile */
+@media (max-width: 500px) {
+  .container {
+    margin: 30px 20px;
+    padding: 20px;
+  }
+
+  #owned-games {
+    justify-content: center;
+  }
+}
+
