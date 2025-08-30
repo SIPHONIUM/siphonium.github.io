@@ -4,27 +4,27 @@
         "price": "100 credits",
         "featured": true,
         "link": "https://siphonium.github.io/fr/shop/buy/Beta-Access",
-        "image": "https://rocknite-studio.github.io/images/np.png"
+        "image": "https://siphonium.github.io/assets/img/icon.png"
     },
     {
         "title": "Premium",
         "price": "100 credits",
         "link": "https://siphonium.github.io/fr/shop/buy/Premium/",
-        "image": "https://rocknite-studio.github.io/images/np.png",
+        "image": "https://siphonium.github.io/assets/img/icon.png",
         "featured": false
     },
     {
         "title": "VIP",
         "price": "200 credits",
         "link": "https://siphonium.github.io/fr/shop/buy/VIP",
-        "image": "https://rocknite-studio.github.io/images/np.png",
+        "image": "https://siphonium.github.io/assets/img/icon.png",
         "featured": false
     },
     {
         "title": "Super VIP",
         "price": "500 credits",
         "link": "https://siphonium.github.io/fr/shop/buy/Super-VIP",
-        "image": "https://rocknite-studio.github.io/images/np.png",
+        "image": "https://siphonium.github.io/assets/img/icon.png",
         "featured": false
     }
 ]
