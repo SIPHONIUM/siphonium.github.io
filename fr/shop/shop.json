@@ -36,6 +36,7 @@
         "price": "0 credits",
         "link": "https://siphonium.github.io/fr/shop/",
         "image": "",
-        "featured": false
+        "featured": false,
+        "id": ""
     }
 ]
