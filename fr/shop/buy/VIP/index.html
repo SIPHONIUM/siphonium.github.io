@@ -44,7 +44,7 @@
 
 <script>
 (async function() {
-  // 1️⃣ Récupérer l'user depuis localStorage
+  // 1️⃣ Vérifier l'user depuis localStorage
   const authDataRaw = localStorage.getItem("pocketbase_auth");
   if (!authDataRaw) {
     window.location.href = "https://siphonium.github.io/fr/account";
@@ -58,29 +58,12 @@
     return;
   }
 
-  // 2️⃣ Récupérer tunnel de paiement depuis tunnels.txt
-  const tunnelsURL = "https://siphonium.github.io/url/tunnels.txt";
-  let paymentBase = "";
-  try {
-    const resp = await fetch(tunnelsURL);
-    const text = await resp.text();
-    const lines = text.split("\n");
-    for (const line of lines) {
-      if (line.startsWith("ROCKNITE-STUDIO-CREDITS-PAYEMENT")) {
-        paymentBase = line.split("=")[1].trim();
-        break;
-      }
-    }
-    if (!paymentBase) console.error("Tunnel de paiement introuvable !");
-  } catch (err) {
-    console.error("Erreur fetch tunnels.txt :", err);
-  }
+  // 2️⃣ Définir l’URL fixe du service de paiement
+  const paymentBase = "https://cp.rocknite-studio.com";
 
   // 3️⃣ Configurer le bouton acheter
   const btn = document.getElementById("buy-btn");
   btn.onclick = async function() {
-    if (!paymentBase) return alert("Tunnel de paiement indisponible");
-
     // 4️⃣ Appel backend pour créer l'achat
     try {
       const gameId = "zsc51f74ysbqbla"; // ID du produit
@@ -92,13 +75,13 @@
       const data = await res.json();
 
       if (data.success) {
-        alert("Achat réussi ! Nouveau solde: " + data.balance);
+        alert("✅ Achat réussi ! Nouveau solde: " + data.balance);
       } else {
-        alert("Erreur : " + data.error);
+        alert("❌ Erreur : " + data.error);
       }
     } catch (err) {
       console.error(err);
-      alert("Impossible de finaliser l'achat");
+      alert("⚠️ Impossible de finaliser l'achat");
     }
   };
 })();
