@@ -23,16 +23,16 @@
       <h2>Télécharge le Launcher</h2>
       <p>Choisis ta plateforme pour commencer ton aventure sur SIPHONIUM.</p>
       <div class="download-list">
-        <a class="btn" id="download-windows" href="#" target="_blank">
-          <img src="../../assets/img/windows.svg" class='windows'>
+        <a class="btn" id="download-windows" href="https://cdn-siphonium.rocknite-studio.com/siphonium%20Launcher-win-x64.exe" target="_blank">
+          <img src="../../assets/img/windows.svg" class="windows">
           Windows
         </a>
-        <a class="btn" id="download-linux" href="#" target="_blank">
-          <img src="../../assets/img/tux.svg" class='linux'> 
+        <a class="btn" id="download-linux" href="https://cdn-siphonium.rocknite-studio.com/siphonium%20Launcher-linux.zip" target="_blank">
+          <img src="../../assets/img/tux.svg" class="linux"> 
           Linux
         </a>
-        <a class="btn" id="download-macos" href="#" target="_blank">
-          <img src="../../assets/img/apple.svg" class='macos'>
+        <a class="btn" id="download-macos" href="https://cdn-siphonium.rocknite-studio.com/siphonium%20Launcher-mac.zip" target="_blank">
+          <img src="../../assets/img/apple.svg" class="macos">
           macOS
         </a>
       </div>
@@ -44,35 +44,6 @@
   </footer>
 
   <script>
-    // URL du fichier tunnels.txt
-    const tunnelsURL = "https://siphonium.github.io/url/tunnels.txt";
-
-    fetch(tunnelsURL)
-      .then(response => response.text())
-      .then(data => {
-        // On récupère la ligne qui contient SIPHONIUM-LAUNCHER-DOWNLOAD
-        const lines = data.split("\n");
-        let downloadBase = "";
-        for (const line of lines) {
-          if (line.startsWith("SIPHONIUM-LAUNCHER-DOWNLOAD")) {
-            // on récupère l'URL après le '=' et on enlève les espaces
-            downloadBase = line.split("=")[1].trim();
-            break;
-          }
-        }
-
-        if (downloadBase) {
-          // on met à jour les href des boutons
-          document.getElementById("download-windows").href = downloadBase + "/siphonium Launcher-win-x64.exe";
-          document.getElementById("download-linux").href = downloadBase + "/siphonium Launcher-linux.zip";
-          document.getElementById("download-macos").href = downloadBase + "/siphonium Launcher-mac.zip";
-        } else {
-          console.error("Impossible de récupérer l'URL de téléchargement !");
-        }
-      })
-      .catch(err => console.error("Erreur lors du fetch du fichier tunnels.txt :", err));
-  </script>
-  <script>
     function pingActivity(from) {
         const url = 'https://siphonium.alwaysdata.net/panel/website/activity.php?from=' + encodeURIComponent(from);
         fetch(url, { method: 'GET', cache: 'no-store' })
@@ -81,7 +52,7 @@
             .catch(err => console.error('Activity ping failed:', err));
     }
 
-    // Ping immédiat
+    // Pings de suivi
     pingActivity('launcher-fr');
     pingActivity('launcher-global');
     pingActivity('FR');
