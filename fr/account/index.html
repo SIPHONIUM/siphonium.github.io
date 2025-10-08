@@ -196,15 +196,15 @@ async function updateAccountInfo() {
   try {
     const purchases = await pb.collection("purchases").getFullList({
       filter: `user="${user.id}" && status="paid"`,
-      expand: "game",
+      expand: "product",
     });
 
     const subsContainer = document.getElementById("owned-games");
     subsContainer.innerHTML = "";
 
     const abonnements = purchases
-      .map(p => p.expand?.game)
-      .filter(g => g && g.type === "subscription" && g.for?.includes("SIPHONIUM"));
+      .map(p => p.expand?.product)
+      .filter(prod => prod && prod.type === "subscription" && prod.for?.includes("SIPHONIUM"));
 
     if (abonnements.length === 0) {
       subsContainer.innerHTML = `<p style="color:white;">Aucun abonnement SIPHONIUM actif</p>`;
