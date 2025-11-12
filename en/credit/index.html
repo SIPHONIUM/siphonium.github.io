@@ -39,7 +39,7 @@
   </div>
   <script>
     function pingActivity(from) {
-        const url = 'https://siphonium.alwaysdata.net/panel/website/activity.php?from=' + encodeURIComponent(from);
+        const url = 'https://siphonium.rocknite-studio.com/panel/website/activity.php?from=' + encodeURIComponent(from);
         fetch(url, { method: 'GET', cache: 'no-store' })
             .then(res => res.json())
             .then(data => console.log('Activity pinged:', data))
